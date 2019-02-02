@@ -1,0 +1,23 @@
+#sweep_area = linspace(0,100,10)*1e-9;
+#omega = getnamed("source1", "center frequency");
+#epsilon = 1.4* eps0;
+#mu = mu0;
+#x = 0:10000000;
+#kappa = sqrt(sin(omega*x)-omega^2/c^2);
+#kappa_m = sqrt(sin(omega*x)^2-epsilon*mu*omega^2/c^2);
+#r_te = (mu * kappa - kappa_m)/ (mu*kappa + kappa_m);
+#r_tm = (epsilon * kappa - kappa_m) / (epsilon*kappa+kappa_m);
+#distance = getnamed("monitor", "z");
+#y = sin(omega*x)*kappa * ((r_tm + omega^2/(c^2*kappa^2)*r_te) + 2*sin(omega*x)*r_tm/kappa^2)*e^(-2*sin(omega*x)*x); 
+#GF =  integrate(y,1,x);
+monitor_E = getresult("monitor","E");
+monitor_H = getresult("monitor","H");
+monitor_P = getresult("monitor","P");
+monitor_T = getresult("monitor","T");
+monitor1_E = getresult("monitor_1","E");
+monitor1_H = getresult("monitor_1","H");
+monitor1_P = getresult("monitor_1","P");
+monitor1_T = getresult("monitor_1","T");
+index = getresult("index_monitor", "index");
+
+matlabsave("C:/Users/cross/Desktop/gf.m");
